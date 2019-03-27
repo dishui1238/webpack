@@ -1,17 +1,31 @@
-import _ from 'lodash'
-import './styles/index.css'
-import './styles/index.less'
-import './styles/index.scss'
-import './main.jsx'
-import './main.ts'
+import _ from 'lodash';
+import './styles/index.css';
+import './styles/index.less';
+import './styles/index.scss';
+import './main.jsx';
+import './main.ts';
 
-function component() {
-    let element = document.createElement('div');
-  
-    // lodash（目前通过一个 script 引入）对于执行这一行是必需的
-    element.innerHTML = _.join(['Hello', 'webpack!!!'], ' ');
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+// function component() {
+//     const element = document.createElement('div');
+//     element.innerHTML = _.join(['Hello', 'webpack!!!'], ' ');
+//     return element;
+//   }
+
+async function getComponent() {
+  var element = document.createElement('div');
+  const { default: _ } = await import(/* webpackChunkName: "index2" */ './index2');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  return element;
+
+}
+getComponent().then(component => {
+  document.body.appendChild(component);
+})
+
+
+// function getImg() {
+//   const imgElement = document.createElement('img');
+//   imgElement.src = require('../img/11.jpg');
+//   return imgElement;
+// }
+// document.body.appendChild(getImg());

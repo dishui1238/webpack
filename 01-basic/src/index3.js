@@ -1,0 +1,1 @@
+console.log('index3' + '啦啦啦啦啦');
